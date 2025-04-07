@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Scopes Assignment</title>
+</head>
+<body>
+<script>
+    let score = 0;
+
+    function askQuestion(question, answer) {
+        const userAnswer = prompt(question);
+        if (userAnswer.toLowerCase() === answer.toLowerCase()) {
+            score++;
+            console.log("Correct!");
+        } else {
+            console.log("Wrong answer.");
+        }
+    }
+
+    const startQuiz = function () {
+        askQuestion("What is the capital of France?", "Paris");
+        askQuestion("What is 2 + 2?", "4");
+        askQuestion("What is the color of the sky?", "blue");
+        console.log(`Your final score is: ${score}`);
+    };
+
+    console.log("Score before declaration: ", score);
+    startQuiz();
+
+    const reviewScore = function () {
+        try {
+            console.log(`Trying to access local score: ${localScore}`);
+        } catch (e) {
+            console.log("Error: Cannot access localScore - " + e.message);
+        }
+    };
+
+    reviewScore();
+
+    let studentName = "Aryan";
+    let activityScores = [10, 20, 15, 5];
+
+    function calculateTotal() {
+        let total = 0;
+        for (let score of activityScores) {
+            total += score;
+        }
+        return total;
+    }
+
+    const evaluateRank = function (totalScore) {
+        if (totalScore > 40) {
+            return "Star Performer";
+        } else if (totalScore >= 30) {
+            return "Active";
+        } else {
+            return "Inactive";
+        }
+    };
+
+    const calculateAverage = function () {
+        return activityScores.reduce((a, b) => a + b, 0) / activityScores.length;
+    };
+
+    function generateReport() {
+        const totalScore = calculateTotal();
+        const averageScore = calculateAverage();
+        const rank = evaluateRank(totalScore);
+
+        console.log(category); 
+        var category = rank;
+
+        function showDetails() {
+            console.log(`Student: ${studentName}`);
+            console.log(`Rank: ${rank}`);
+            console.log(`Message: ${rank === "Star Performer" ? "Great job on co-curriculars!" : "Keep improving!"}`);
+        }
+
+        console.log(`Total Score: ${totalScore}`);
+        console.log(`Average Score: ${averageScore}`);
+        console.log(`Rank: ${rank}`);
+        showDetails();
+    }
+
+    if (true) {
+        var isolatedVar = "I am accessible outside this block";
+    }
+    console.log(isolatedVar);
+
+    generateReport();
+</script>
+</body>
+</html>
